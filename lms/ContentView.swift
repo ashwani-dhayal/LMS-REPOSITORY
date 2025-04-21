@@ -8,19 +8,33 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
+
     var body: some View {
-        VStack {
-            Image(systemName: "book")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Library Management System")
+        NavigationView {
+            if authViewModel.isLoading {
+                ProgressView("Loading...")
+            } else if authViewModel.isAuthenticated {
+                switch authViewModel.userRole {
+                case .admin:
+                    AdminHomeView()
+                        .environmentObject(authViewModel)
+                case .librarian:
+                    LibrarianHomeView()
+                        .environmentObject(authViewModel)
+                case .user:
+                    UserHomeView()
+                        .environmentObject(authViewModel)
+                }
+            } else {
+                AuthContainerView()
+                    .environmentObject(authViewModel)
+            }
         }
-        .padding()
     }
-    
-    
 }
 
 #Preview {
     ContentView()
+        .environmentObject(AuthViewModel())
 }
