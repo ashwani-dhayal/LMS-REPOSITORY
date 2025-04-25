@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  lms
-//
-//  Created by VR on 18/04/25.
-//
-
 import SwiftUI
 
 struct ContentView: View {
@@ -23,7 +16,7 @@ struct ContentView: View {
                     LibrarianHomeView()
                         .environmentObject(authViewModel)
                 case .user:
-                    UserHomeView()
+                    AdminHomeView()
                         .environmentObject(authViewModel)
                 }
             } else {

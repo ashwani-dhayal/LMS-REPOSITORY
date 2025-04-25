@@ -1,12 +1,11 @@
-//
-//  lmsApp.swift
-//  lms
-//
-//  Created by VR on 18/04/25.
-//
 
 import FirebaseAuth
 import FirebaseCore
+import FirebaseFirestore
+import FirebaseAuth
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseStorage
 import SwiftUI
 
 @main
@@ -20,7 +19,7 @@ struct lmsApp: App {
   var body: some Scene {
     WindowGroup {
       ContentView()
-        .environmentObject(authViewModel)
+        .environmentObject(authViewModel)  // This is correct - make sure it's not missing
     }
   }
 }
